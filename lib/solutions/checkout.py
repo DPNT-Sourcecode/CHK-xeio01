@@ -30,14 +30,10 @@ PROMOTIONS = {
 # skus = unicode string
 def checkout(skus):
 
-    basket = {
-        'A': 0,
-        'B': 0,
-        'C': 0,
-        'D': 0,
-        'E': 0,
-        'F': 0,
-    }
+    basket = {}
+
+    for item in PRICES:
+        basket[item] = 0
 
     for char in skus:
         if char not in PRICES:
