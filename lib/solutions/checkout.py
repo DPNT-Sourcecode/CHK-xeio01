@@ -23,15 +23,19 @@ def checkout(skus):
         },
     }
 
-    # assuming it's 4A not AAAA, and A comes in as 1A
+    # nope
 
-    basket = {}
+    basket = {
+        'A': 0,
+        'B': 0,
+        'C': 0,
+        'D': 0,
+    }
 
-    for i in range(len(skus)):
-        if skus[i] not in valid_skus:
+    for char in skus:
+        if char not in valid_skus:
             return -1
-        if i%2 == 0:
-            basket[skus[i+1]] = skus[i]
+        basket[char] += 1 
     
     amount = 0
 
