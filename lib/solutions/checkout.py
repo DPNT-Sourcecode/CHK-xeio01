@@ -4,14 +4,6 @@
 # skus = unicode string
 def checkout(skus):
 
-    prices = {
-        'A': 50,
-        'B': 30,
-        'C': 20,
-        'D': 15,
-        'E': 40,
-    }
-
     # to do: name these fields better
 
     promotions = {
@@ -58,7 +50,6 @@ def checkout(skus):
     # apply bundle promotions first
 
 
-
     for item in basket:
         non_promo_number = basket[item]
         if item in promotions:
@@ -69,3 +60,6 @@ def checkout(skus):
         amount += non_promo_number*prices[item]
 
     return amount
+
+def _apply_bundle_promos(basket):
+
