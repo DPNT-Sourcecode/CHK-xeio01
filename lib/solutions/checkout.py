@@ -78,7 +78,8 @@ def _apply_single_item_promos(basket):
                 # how many items not to apply the promotion to
                 non_promo_number = basket[item] % multiplier
                 number_to_apply_promo = basket[item] - non_promo_number
-                amount += promo[1]
-                items_left = basket[item] - number_to_apply_promo
-                basket[item] = 0 if items_left < 0 else items_left
+                if number_to_apply_promo > 0:
+                    amount += promo[1]*
+                    items_left = basket[item] - number_to_apply_promo
+                    basket[item] = 0 if items_left < 0 else items_left
     return amount, basket
