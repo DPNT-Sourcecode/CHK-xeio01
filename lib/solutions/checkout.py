@@ -3,6 +3,7 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+
     prices = {
         'A': 50,
         'B': 30,
@@ -11,25 +12,30 @@ def checkout(skus):
         'E': 40,
     }
 
+    # TODO name these fields better
     promotions = {
-        'A': [
-            {
-                'multiplier': 3,
-                'type': 'single-item',
-                'amount': 130,
-            },
-            {
-                'multiplier': 5,
-                'type': 'single-item',
-                'amount': 200,
+        'single_item': {
+            'A': [
+                {
+                    'multiplier': 3,
+                    'amount': 130,
+                },
+                {
+                    'multiplier': 5,
+                    'amount': 200,
+                }
+            ],
+            'B': [{
+                'multiplier': 2,
+                'amount': 45,
+            }],
+        },
+        'bundle': {
+            'E': {
+                'multiplier': 2,
+                'target_item': 'B'
             }
-        ],
-        'B': [{
-            'multiplier': 2,
-            'type': 'single-item',
-            'amount': 45,
-        }],
-    }
+        }
 
     # nope
 
@@ -46,6 +52,10 @@ def checkout(skus):
         basket[char] += 1 
     
     amount = 0
+
+    # apply bundle promotions first
+
+    
 
     for item in basket:
         non_promo_number = basket[item]
