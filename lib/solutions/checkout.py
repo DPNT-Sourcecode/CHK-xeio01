@@ -44,23 +44,18 @@ def checkout(skus):
     }
 
     for char in skus:
-        if char not in valid_skus:
+        if char not in prices:
             return -1
         basket[char] += 1 
     
     amount = 0
 
     # apply bundle promotions first
-    amount, remaining_basket = _apply_bundle_promos(basket)
+    # this removes items that will be free from the basket,
+    # since currently bundles don't change the item price
+    remaining_basket = _apply_bundle_promos(basket)
 
-    for item in basket:
-        non_promo_number = basket[item]
-        if item in promotions:
-            multiplier = promotions[item]['multiplier']
-            non_promo_number = basket[item] % multiplier
-            amount += (basket[item] - non_promo_number)/multiplier*promotions[item]['amount']
-        
-        amount += non_promo_number*prices[item]
+    amount += _apply_single_item_promos(remaining_basket)
 
     return amount
 
@@ -75,6 +70,21 @@ def _apply_bundle_promos(basket):
             number_target_items = basket[target]
             target_items_to_remove = number_target_items - number_bundled_items/multiplier
 
-            basket
+            basket[target] = (
+                0 
+                if target_items_to_remove < 0 else
+                target_items_to_remove
+            )
+            return basket
             
-    return 0, basket
+    return basket
+
+def _apply_single_item_promos(basket):
+    for item in basket:
+        non_promo_number = basket[item]
+        if item in PROMOTIONS['single_item']:
+            multiplier = PROMOTIONS['single_item'][item]['multiplier']
+            non_promo_number = basket[item] % multiplier
+            amount += (basket[item] - non_promo_number)/multiplier*PROMOTIONS['single_item'][item]['amount']
+        
+        amount += non_promo_number*PRICES[item]
