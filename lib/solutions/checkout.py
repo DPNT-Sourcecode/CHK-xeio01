@@ -69,5 +69,12 @@ def _apply_bundle_promos(basket):
 
     for sku in basket:
         if sku in bundled_items:
+            target = PROMOTIONS['bundle'][sku]['target_item']
+            multiplier = PROMOTIONS['bundle'][sku]['multiplier']
+            number_bundled_items = basket[sku]
+            number_target_items = basket[target]
+            target_items_to_remove = number_target_items - number_bundled_items/multiplier
+
+            basket
             
     return 0, basket
