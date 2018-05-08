@@ -7,7 +7,7 @@ class TestCheckout(unittest.TestCase):
     def test_illegal_input_returns_minus_one(self):
         self.assertEqual(
             -1,
-            checkout('K')
+            checkout('1')
         )
 
     def test_promo_applied_to_a(self):

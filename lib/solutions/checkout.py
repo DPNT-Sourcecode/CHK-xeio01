@@ -34,8 +34,9 @@ PROMOTIONS = {
         'B': [(2, 45)],
         'H': [(10, 80), (5, 45)],
         'K': [(2, 150)],
-        'P': [(5, 200)]
-
+        'P': [(5, 200)],
+        'Q': [(3, 80)],
+        'V': [(3, 130), (2, 90)],
     },
     'bundle': {
         'E': {
@@ -45,11 +46,19 @@ PROMOTIONS = {
         'F': {
             'multiplier': 2,
             'target_item': 'F'
-        }
+        },
         'N': {
-            'multiplier': 2,
-            'target_item': 'M'
-        }
+            'multiplier': 3,
+            'target_item': 'M',
+        },
+        'R': {
+            'multiplier': 3,
+            'target_item': 'Q',
+        },
+        'U': {
+            'multiplier': 3,
+            'target_item': 'U',
+        },
     }
 }
 
