@@ -1,3 +1,4 @@
 # noinspection PyShadowingBuiltins,PyUnusedLocal
 def sum(x, y):
-    raise NotImplementedError()
+    """Returns the sum of x and y."""
+    return x + y
