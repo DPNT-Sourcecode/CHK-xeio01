@@ -8,20 +8,8 @@ PRICES = {
 
 PROMOTIONS = {
     'single_item': {
-        'A': [
-            {
-                'multiplier': 3,
-                'amount': 130,
-            },
-            {
-                'multiplier': 5,
-                'amount': 200,
-            }
-        ],
-        'B': [{
-            'multiplier': 2,
-            'amount': 45,
-        }],
+        'A': [(3, 130), (5, 200)],
+        'B': [(2, 45)],
     },
     'bundle': {
         'E': {
@@ -44,7 +32,7 @@ def checkout(skus):
     }
 
     for char in skus:
-        if char not in prices:
+        if char not in PRICES:
             return -1
         basket[char] += 1 
     
@@ -80,11 +68,16 @@ def _apply_bundle_promos(basket):
     return basket
 
 def _apply_single_item_promos(basket):
+    amount = 0
     for item in basket:
         non_promo_number = basket[item]
         if item in PROMOTIONS['single_item']:
-            multiplier = PROMOTIONS['single_item'][item]['multiplier']
-            non_promo_number = basket[item] % multiplier
+
+            for promo in PROMOTIONS['single_item'][item]:
+                multiplier = promo['multiplier']
+                non_promo_number = basket[item] % multiplier
             amount += (basket[item] - non_promo_number)/multiplier*PROMOTIONS['single_item'][item]['amount']
         
         amount += non_promo_number*PRICES[item]
+
+    return amount
