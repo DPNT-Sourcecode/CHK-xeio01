@@ -45,6 +45,18 @@ class TestCheckout(unittest.TestCase):
             125,
             checkout('EEBBB')
         )
+
+    def test_promo_applied_to_F(self):
+        self.assertEqual(
+            20,
+            checkout('FFF')
+        )
+    
+    def test_promo_applied_to_f_sanely(self):
+        self.assertEqual(
+            30,
+            checkout('FFFF')
+        )
     
     def test_valid_input_returns_correct_amount(self):
         self.assertEqual(

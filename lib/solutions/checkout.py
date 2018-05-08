@@ -4,6 +4,7 @@ PRICES = {
         'C': 20,
         'D': 15,
         'E': 40,
+        'F': 10,
     }
 
 PROMOTIONS = {
@@ -16,6 +17,10 @@ PROMOTIONS = {
         'E': {
             'multiplier': 2,
             'target_item': 'B'
+        },
+        'F': {
+            'multiplier': 2,
+            'target_item': 'F'
         }
     }
 }
@@ -31,6 +36,7 @@ def checkout(skus):
         'C': 0,
         'D': 0,
         'E': 0,
+        'F': 0,
     }
 
     for char in skus:
