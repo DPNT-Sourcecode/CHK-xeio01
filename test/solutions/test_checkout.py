@@ -12,7 +12,7 @@ class TestCheckout(unittest.TestCase):
 
     def test_promo_applied_to_a(self):
         self.assertEqual(
-            260,
+            250,
             checkout('AAAAAA')
         )
 

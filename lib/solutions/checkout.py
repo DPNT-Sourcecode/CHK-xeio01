@@ -40,12 +40,12 @@ def checkout(skus):
     # apply bundle promotions first
     # this removes items that will be free from the basket,
     # since currently bundles don't change the item price
-    remaining_basket = _apply_bundle_promos(basket)
+    #remaining_basket = _apply_bundle_promos(basket)
 
-    amount, remaining_basket = _apply_single_item_promos(remaining_basket)
+    amount, remaining_basket = _apply_single_item_promos(basket)
 
     for item in remaining_basket:
-        amount += remaining_basket[item]
+        amount += remaining_basket[item]*PRICES[item]
 
     return amount
 
