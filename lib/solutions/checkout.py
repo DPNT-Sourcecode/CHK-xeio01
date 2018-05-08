@@ -12,7 +12,8 @@ def checkout(skus):
         'E': 40,
     }
 
-    # TODO name these fields better
+    # to do: name these fields better
+
     promotions = {
         'single_item': {
             'A': [
@@ -36,6 +37,7 @@ def checkout(skus):
                 'target_item': 'B'
             }
         }
+    }
 
     # nope
 
@@ -55,7 +57,7 @@ def checkout(skus):
 
     # apply bundle promotions first
 
-    
+
 
     for item in basket:
         non_promo_number = basket[item]
