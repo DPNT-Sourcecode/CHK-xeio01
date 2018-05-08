@@ -19,7 +19,7 @@ class TestCheckout(unittest.TestCase):
     def test_promo_applied_to_b(self):
         self.assertEqual(
             90,
-            checkout('BB')
+            checkout('BBBB')
         )
 
     def test_promo_applied_to_a_and_b(self):

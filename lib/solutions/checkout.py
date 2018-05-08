@@ -42,8 +42,9 @@ def checkout(skus):
     for item in basket:
         non_promo_number = basket[item]
         if item in promotions:
-            non_promo_number = basket[item] % promotions[item]['multiplier']
-            amount += (basket[item] - non_promo_number)*promotions[item]['amount']
+            multiplier = promotions[item]['multiplier']
+            non_promo_number = basket[item] % multiplier
+            amount += (basket[item] - non_promo_number)/multiplier*promotions[item]['amount']
         
         amount += non_promo_number*prices[item]
 
