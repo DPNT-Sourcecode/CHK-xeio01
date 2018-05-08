@@ -8,7 +8,8 @@ PRICES = {
 
 PROMOTIONS = {
     'single_item': {
-        'A': [(3, 130), (5, 200)],
+        # ordered list from highest multipler to lowest
+        'A': [(5, 200), (3, 130)],
         'B': [(2, 45)],
     },
     'bundle': {
@@ -72,11 +73,11 @@ def _apply_single_item_promos(basket):
     for item in basket:
         non_promo_number = basket[item]
         if item in PROMOTIONS['single_item']:
-
             for promo in PROMOTIONS['single_item'][item]:
-                multiplier = promo['multiplier']
+                multiplier = promo[0]
                 non_promo_number = basket[item] % multiplier
-            amount += (basket[item] - non_promo_number)/multiplier*PROMOTIONS['single_item'][item]['amount']
+                number_to_apply_promo = (basket[item] - non_promo_number)/multiplier
+                amount += number_to_apply_promo*PROMO['single_item'][item]['amount']
         
         amount += non_promo_number*PRICES[item]
 
