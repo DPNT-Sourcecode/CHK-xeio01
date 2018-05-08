@@ -57,6 +57,9 @@ class TestCheckout(unittest.TestCase):
             30,
             checkout('FFFF')
         )
+
+    # should change the tests to instead pass in a test config with loads
+    # of items and promos of the expected format
     
     def test_valid_input_returns_correct_amount(self):
         self.assertEqual(
