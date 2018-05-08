@@ -82,5 +82,6 @@ def _apply_single_item_promos(basket):
                 amount += number_to_apply_promo*promo[1]
                 items_left = basket[item] - number_to_apply_promo
                 basket[item] = 0 if items_left < 0 else items_left
+                ipdb.set_trace()
     ipdb.set_trace()
     return amount, basket
