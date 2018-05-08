@@ -3,24 +3,32 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    valid_skus = ['A', 'B', 'C', 'D']
-
     prices = {
         'A': 50,
         'B': 30,
         'C': 20,
         'D': 15,
+        'E': 40,
     }
 
     promotions = {
-        'A': {
-            'multiplier': 3,
-            'amount': 130,
-        },
-        'B': {
+        'A': [
+            {
+                'multiplier': 3,
+                'type': 'single-item',
+                'amount': 130,
+            },
+            {
+                'multiplier': 5,
+                'type': 'single-item',
+                'amount': 200,
+            }
+        ],
+        'B': [{
             'multiplier': 2,
+            'type': 'single-item',
             'amount': 45,
-        },
+        }],
     }
 
     # nope
