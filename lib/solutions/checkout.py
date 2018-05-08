@@ -58,8 +58,6 @@ def checkout(skus):
 
 def _apply_bundle_promos(basket):
     bundled_items = PROMOTIONS['bundle']
-    print basket
-
     for sku in basket:
         if sku in bundled_items:
             target = PROMOTIONS['bundle'][sku]['target_item']
