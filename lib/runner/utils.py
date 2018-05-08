@@ -12,7 +12,7 @@ class Utils:
             .with_server_hostname(read_from_config_file('tdl_hostname'))\
             .with_colours(read_from_config_file_with_default('tdl_use_coloured_output', True))\
             .with_recording_system_should_be_on(read_from_config_file_with_default('tdl_require_rec', True))\
-            .with_working_directory('../')
+            .with_working_directory('../pyt')
 
     @staticmethod
     def get_runner_config():
