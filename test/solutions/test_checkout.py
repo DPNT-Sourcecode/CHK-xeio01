@@ -42,7 +42,7 @@ class TestCheckout(unittest.TestCase):
 
     def test_multiple_promo_applied_to_b(self):
         self.assertEqual(
-            85,
+            125,
             checkout('EEBBB')
         )
     
