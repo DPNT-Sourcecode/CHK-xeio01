@@ -36,15 +36,16 @@ def checkout(skus):
         if char not in PRICES:
             return -1
         basket[char] += 1 
-    
-    amount = 0
 
     # apply bundle promotions first
     # this removes items that will be free from the basket,
     # since currently bundles don't change the item price
     remaining_basket = _apply_bundle_promos(basket)
 
-    amount += _apply_single_item_promos(remaining_basket)
+    amount, remaining_basket = _apply_single_item_promos(remaining_basket)
+
+    for item in remaining_basket:
+        amount += remaining_basket[item]
 
     return amount
 
@@ -71,14 +72,13 @@ def _apply_bundle_promos(basket):
 def _apply_single_item_promos(basket):
     amount = 0
     for item in basket:
-        non_promo_number = basket[item]
         if item in PROMOTIONS['single_item']:
             for promo in PROMOTIONS['single_item'][item]:
                 multiplier = promo[0]
                 non_promo_number = basket[item] % multiplier
                 number_to_apply_promo = (basket[item] - non_promo_number)/multiplier
-                amount += number_to_apply_promo*PROMO['single_item'][item]['amount']
-        
-        amount += non_promo_number*PRICES[item]
+                amount += number_to_apply_promo*promo[1]
+                items_left = basket[item] - number_to_apply_promo
 
-    return amount
+                basket[item] = 0 if items_left < 0 else items_left
+    return amount, basket
