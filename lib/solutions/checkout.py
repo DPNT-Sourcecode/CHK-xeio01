@@ -1,37 +1,40 @@
+PRICES = {
+        'A': 50,
+        'B': 30,
+        'C': 20,
+        'D': 15,
+        'E': 40,
+    }
+
+PROMOTIONS = {
+    'single_item': {
+        'A': [
+            {
+                'multiplier': 3,
+                'amount': 130,
+            },
+            {
+                'multiplier': 5,
+                'amount': 200,
+            }
+        ],
+        'B': [{
+            'multiplier': 2,
+            'amount': 45,
+        }],
+    },
+    'bundle': {
+        'E': {
+            'multiplier': 2,
+            'target_item': 'B'
+        }
+    }
+}
 
 
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-
-    # to do: name these fields better
-
-    promotions = {
-        'single_item': {
-            'A': [
-                {
-                    'multiplier': 3,
-                    'amount': 130,
-                },
-                {
-                    'multiplier': 5,
-                    'amount': 200,
-                }
-            ],
-            'B': [{
-                'multiplier': 2,
-                'amount': 45,
-            }],
-        },
-        'bundle': {
-            'E': {
-                'multiplier': 2,
-                'target_item': 'B'
-            }
-        }
-    }
-
-    # nope
 
     basket = {
         'A': 0,
@@ -48,7 +51,7 @@ def checkout(skus):
     amount = 0
 
     # apply bundle promotions first
-
+    amount, remaining_basket = _apply_bundle_promos(basket)
 
     for item in basket:
         non_promo_number = basket[item]
@@ -62,4 +65,9 @@ def checkout(skus):
     return amount
 
 def _apply_bundle_promos(basket):
+    bundled_items = PROMOTIONS['bundle']
 
+    for sku in basket:
+        if sku in bundled_items:
+            
+    return 0, basket
