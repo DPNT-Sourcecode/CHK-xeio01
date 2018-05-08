@@ -75,9 +75,9 @@ def _apply_bundle_promos(basket):
                 )
             else:
                 leftover_fs = basket[sku]%3
-                compressed_fs = basket[sku]/3
+                compressed_fs = basket[sku]/3*2
                 basket[sku] = compressed_fs + leftover_fs
-            return basket
+    return basket
             
     return basket
 
