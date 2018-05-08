@@ -63,15 +63,19 @@ def _apply_bundle_promos(basket):
         if sku in bundled_items:
             target = PROMOTIONS['bundle'][sku]['target_item']
             multiplier = PROMOTIONS['bundle'][sku]['multiplier']
-            number_bundled_items = basket[sku]
-            number_target_items = basket[target]
-            target_items_to_remove = number_target_items - number_bundled_items/multiplier
+            # soz - i don't have time to think of something better right now, hr
+            if sku != target:
+                number_bundled_items = basket[sku]
+                number_target_items = basket[target]
+                target_items_to_remove = number_target_items - number_bundled_items/multiplier
 
-            basket[target] = (
-                0 
-                if target_items_to_remove < 0 else
-                target_items_to_remove
-            )
+                basket[target] = (
+                    0 
+                    if target_items_to_remove < 0 else
+                    target_items_to_remove
+                )
+            else:
+                
             return basket
             
     return basket
