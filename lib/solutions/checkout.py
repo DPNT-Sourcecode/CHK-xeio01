@@ -70,7 +70,6 @@ def _apply_bundle_promos(basket):
     return basket
 
 def _apply_single_item_promos(basket):
-    import ipdb; ipdb.set_trace()
     amount = 0
     for item in basket:
         if item in PROMOTIONS['single_item']:
@@ -79,9 +78,7 @@ def _apply_single_item_promos(basket):
                 # how many items not to apply the promotion to
                 non_promo_number = basket[item] % multiplier
                 number_to_apply_promo = basket[item] - non_promo_number
-                amount += number_to_apply_promo*promo[1]
+                amount += promo[1]
                 items_left = basket[item] - number_to_apply_promo
                 basket[item] = 0 if items_left < 0 else items_left
-                ipdb.set_trace()
-    ipdb.set_trace()
     return amount, basket
