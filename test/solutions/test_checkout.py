@@ -27,6 +27,24 @@ class TestCheckout(unittest.TestCase):
             175,
             checkout('AAABB')
         )
+
+    def test_promo_applied_to_e_and_b(self):
+        self.assertEqual(
+            110,
+            checkout('EEBB')
+        )
+
+    def test_multiple_promo_applied_to_a(self):
+        self.assertEqual(
+            330,
+            checkout('AAAAAAAA')
+        )
+
+    def test_multiple_promo_applied_to_b(self):
+        self.assertEqual(
+            85,
+            checkout('EEBBB')
+        )
     
     def test_valid_input_returns_correct_amount(self):
         self.assertEqual(
