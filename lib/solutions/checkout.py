@@ -155,6 +155,19 @@ def _apply_weird_new_promo(basket):
     new_basket['T'] = 0
     new_basket['Y'] = 0
 
+    leftover_twenties = leftovers['S'] + leftovers['T'] + leftovers['Y']
+    leftovers['S'] = leftover_twenties
+    leftovers['T'] = 0
+    leftovers['Y'] = 0
+
+    if leftovers['Z'] == 0:
+        if leftovers['S'] == 0:
+            if leftovers['X'] == 0:
+                pass
+    if leftovers['Z'] % 3 == 2:
+    
+    if leftovers['Z'] % 3 == 1:
+
     
     # then whatever is left with xs
 
