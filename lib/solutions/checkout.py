@@ -160,15 +160,8 @@ def _apply_weird_new_promo(basket):
     leftovers['T'] = 0
     leftovers['Y'] = 0
 
-    if leftovers['Z'] == 0:
-        if leftovers['S'] == 0:
-            if leftovers['X'] == 0:
-                pass
-    if leftovers['Z'] % 3 == 2:
-    
-    if leftovers['Z'] % 3 == 1:
-
-    
+    if (leftovers['Z'] + leftovers['S'] + leftovers['Z'])/3 != 0:
+        
     # then whatever is left with xs
 
 def _helper_thingie_for_weird_new_promo(number, amount):
