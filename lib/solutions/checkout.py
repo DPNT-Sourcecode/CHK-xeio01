@@ -87,7 +87,7 @@ def checkout(skus):
     amount, remaining_basket = _apply_weird_new_promo(remaining_basket)
 
     # theres no item with both this promo and the ones above, so all good
-    amount, remaining_basket = _apply_single_item_promos(basket)
+    amount, remaining_basket = _apply_single_item_promos(remaining_basket)
 
     for item in remaining_basket:
         amount += remaining_basket[item]*PRICES[item]
@@ -113,8 +113,6 @@ def _apply_bundle_promos(basket):
                 leftover_fs = basket[sku]%(multiplier + 1)
                 compressed_fs = basket[sku]/(multiplier+1)*multiplier
                 basket[sku] = compressed_fs + leftover_fs
-    return basket
-            
     return basket
 
 def _apply_single_item_promos(basket):
@@ -162,10 +160,10 @@ def _apply_weird_new_promo(basket):
     else:
         new_basket[stop] = leftovers
 
-    return amount, basket.update(**new_basket)
+    basket.update(**new_basket)
+    return amount, basket
 
 def _helper_thingie_for_weird_new_promo(number, amount):
-    # make as many bundles as possible
     leftover = number % 3 if number >= 3 else number
     if leftover != number:
         amount += (number - leftover)/3*45
