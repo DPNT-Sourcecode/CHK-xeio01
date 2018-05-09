@@ -144,17 +144,26 @@ def _apply_weird_new_promo(basket):
     ys = basket['Y']  # costs 20
     zs = basket['Z']  # costs 21
 
-    twenties = ss + ts + ys
-
     # make as many z bundles as possible
+    
     leftover_zs = zs % 3 if zs >= 3 else zs
     if leftover_zs != zs:
         amount += (zs-leftover_zs)/3*45
     
+
     twenties = twenties + leftover_zs
-    # this looks recursive but i have a migraine and cant think properly right now 
+    # this looks recursive but i have a migraine and cant think properly right now 😅
     # then zs with s, t, y
 
     # then whatever is left with xs
+
+def _helper_thingie_for_weird_new_promo(number):
+    # make as many bundles as possible
+    amount = 0
+    leftover = number % 3 if number >= 3 else number
+    if leftover != number:
+        amount += (number - leftover)/3*45
+
+    return amount, leftover
     
     
