@@ -144,12 +144,13 @@ def _apply_weird_new_promo(basket):
     new_basket['T'] = 0
     new_basket['Y'] = 0
 
-    leftovers = new_basket['Z'] % 3 if new_basket['Z'] >= 3 else new_basket['Z']
-    if leftovers 
+    # too many people in the living room to focus
+    # see  you tomorrow :)
+    leftovers = new_basket['Z'] % 3
+    if leftovers == new_basket['Z']:
     
     leftovers = 0
     stop = ''
-    # clearly the latter
     for item in ('Z', 'S', 'X'):
         totes = new_basket['Z'] + new_basket['S'] + new_basket['X']
         if totes > 3:
