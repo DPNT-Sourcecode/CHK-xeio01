@@ -136,19 +136,15 @@ def _apply_weird_new_promo(basket):
     # buy any 3 of (S,T,X,Y,Z) for 45 
     # there will be no new requirements coming in because this is the last part of the test
     
+    items_this_applies_to = ('S', 'T', 'X', 'Y', 'Z')
     amount = 0
-    new_basket = copy.deepcopy(basket)
-    ss = basket['S']  # costs 20
-    ts = basket['T']  # costs 20
-    xs = basket['X']  # costs 17
-    ys = basket['Y']  # costs 20
-    zs = basket['Z']  # costs 21
 
-    # make as many z bundles as possible
-    
-    leftover_zs = zs % 3 if zs >= 3 else zs
-    if leftover_zs != zs:
-        amount += (zs-leftover_zs)/3*45
+    new_basket = { item: basket[item] for item in items_this_applies_to }
+    leftovers = {}
+    for item in new_basket:
+        amount, leftovers[item] = _helper_thingie_for_weird_new_promo(
+            new, amount)
+
     
 
     twenties = twenties + leftover_zs
@@ -157,9 +153,8 @@ def _apply_weird_new_promo(basket):
 
     # then whatever is left with xs
 
-def _helper_thingie_for_weird_new_promo(number):
+def _helper_thingie_for_weird_new_promo(number, amount):
     # make as many bundles as possible
-    amount = 0
     leftover = number % 3 if number >= 3 else number
     if leftover != number:
         amount += (number - leftover)/3*45
