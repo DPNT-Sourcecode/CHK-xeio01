@@ -134,8 +134,20 @@ def _apply_weird_new_promo(basket):
     # buy any 3 of (S,T,X,Y,Z) for 45 
     # there will be no new requirements coming in because this is the last part of the test
     
-    ss = basket['S']
-    ts = basket['T']
-    xs = basket['X']
-    ys = basket['Y']
-    zs = basket
+    ss = basket['S']  # costs 20
+    ts = basket['T']  # costs 20
+    xs = basket['X']  # costs 17
+    ys = basket['Y']  # costs 20
+    zs = basket['Z']  # costs 21
+
+    twenties = ss + ts + ys
+
+    # make as many z bundles as possible
+    leftover_zs = zs % 3 if zs >= 3 else zs
+    if leftover_zs == zs:
+
+    # then zs with s, t, y
+
+    # then whatever is left with xs
+    
+    
