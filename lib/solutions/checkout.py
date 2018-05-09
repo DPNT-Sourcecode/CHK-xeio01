@@ -143,6 +143,9 @@ def _apply_weird_new_promo(basket):
     new_basket['S'] = twenties
     new_basket['T'] = 0
     new_basket['Y'] = 0
+
+    leftovers = new_basket['Z'] % 3 if new_basket['Z'] >= 3 else new_basket['Z']
+    if leftovers 
     
     leftovers = 0
     stop = ''
