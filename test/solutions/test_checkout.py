@@ -98,6 +98,11 @@ class TestCheckout(unittest.TestCase):
             checkout('STX')
         )
 
+    def test_weird_promo_returns_correct_amount_two(self):
+        self.assertEqual(
+            90,
+            checkout('STXSTX')
+        )
 
 if __name__ == '__main__':
     unittest.main()

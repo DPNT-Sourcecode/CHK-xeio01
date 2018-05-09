@@ -146,13 +146,14 @@ def _apply_weird_new_promo(basket):
     
     leftovers = 0
     stop = ''
-    # 🤦‍♀️ clearly the latter
+    # clearly the latter
     for item in ('Z', 'S', 'X'):
         totes = new_basket['Z'] + new_basket['S'] + new_basket['X']
-        if new_basket[item] + leftovers > 3:
+        if totes > 3:
             new_amount, leftovers = _helper_thingie_for_weird_new_promo(
                 new_basket[item] + leftovers, amount)
             amount += new_amount
+            new_basket[item] = 
         else:
             stop = item
             break
