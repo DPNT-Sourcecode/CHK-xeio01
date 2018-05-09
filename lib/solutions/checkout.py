@@ -154,7 +154,7 @@ def _apply_weird_new_promo(basket):
             amount += new_amount
         else:
             stop = item
-    import ipdb; ipdb.set_trace()
+            break
 
     if stop == '':
         new_basket['X'] = leftovers   
