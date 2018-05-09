@@ -150,10 +150,14 @@ def _apply_weird_new_promo(basket):
     for item in ('Z', 'S', 'X'):
         totes = new_basket['Z'] + new_basket['S'] + new_basket['X']
         if totes > 3:
-            new_amount, leftovers = _helper_thingie_for_weird_new_promo(
+            # will either make bundles with just one item and produce leftovers
+            # or keep leftovers to use on the next one
+            # if leftovers is 0, it was either all bundles in this item
+            # or nothing happened
+            new_amount, new_leftovers = _helper_thingie_for_weird_new_promo(
                 new_basket[item] + leftovers, amount)
             amount += new_amount
-            new_basket[item] = 
+            new_basket[item] = leftovers if new_basket[item] % 3 == 0 else new_basket[item]
         else:
             stop = item
             break
