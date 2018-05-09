@@ -140,6 +140,11 @@ def _apply_weird_new_promo(basket):
     amount = 0
 
     new_basket = { item: basket[item] for item in items_this_applies_to }
+    twenties = new_basket['S'] + new_basket['T'] + new_basket['Y']
+    new_basket['S'] = twenties
+    del new_basket['T']
+    del new_basket['Y']
+
     leftovers = {}
     for item in new_basket:
         amount, leftovers[item] = _helper_thingie_for_weird_new_promo(
@@ -150,18 +155,11 @@ def _apply_weird_new_promo(basket):
     # although it doesn't really matter if they all cost the same, right?
     # right
 
-    twenties = new_basket['S'] + new_basket['T'] + new_basket['Y']
-    new_basket['S'] = twenties
-    new_basket['T'] = 0
-    new_basket['Y'] = 0
-
-    leftover_twenties = leftovers['S'] + leftovers['T'] + leftovers['Y']
-    leftovers['S'] = leftover_twenties
-    leftovers['T'] = 0
-    leftovers['Y'] = 0
-
-    if (leftovers['Z'] + leftovers['S'] + leftovers['Z'])/3 != 0:
+    for item in leftovers:
+        if leftovers[item] == 0:
+            continue
         
+
     # then whatever is left with xs
 
 def _helper_thingie_for_weird_new_promo(number, amount):
