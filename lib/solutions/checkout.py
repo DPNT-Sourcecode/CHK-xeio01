@@ -145,37 +145,12 @@ def _apply_weird_new_promo(basket):
     del new_basket['T']
     del new_basket['Y']
 
+    # no this is wrong, we want to bundle the zs with s/t/y first...
     leftovers = {}
     for item in new_basket:
         amount, leftovers[item] = _helper_thingie_for_weird_new_promo(
             new_basket[item], amount)
 
-    # have to keep track of which items have been grouped
-    # so we how many will still get the normal price applied
-    # although it doesn't really matter if they all cost the same, right?
-    # right
-
-    # order matters, want to reduce price as much as possible for the customer
-
-    # does this really have to be the biggest if/else in the history of mankind?
-
-    if leftovers['Z'] == 2:
-        if leftovers['S'] == 1:
-            amount += 45
-        elif leftovers['S'] == 2:
-            amount += 45
-            leftovers['S'] = 1
-            if leftovers['X'] == 2:
-                amount += 45
-
-    # then whatever is left with xs
-
-def _helper_thingie_for_weird_new_promo(number, amount):
-    # make as many bundles as possible
-    leftover = number % 3 if number >= 3 else number
-    if leftover != number:
-        amount += (number - leftover)/3*45
-
-    return amount, leftover
+   
     
     
