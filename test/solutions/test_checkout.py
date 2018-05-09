@@ -85,6 +85,18 @@ class TestCheckout(unittest.TestCase):
             20,
             checkout('Y')
         )
+    
+    def test_z_returns_correct_amount(self):
+        self.assertEqual(
+            21,
+            checkout('Z')
+        )
+
+    def test_weird_promo_returns_correct_amount(self):
+        self.assertEqual(
+            45,
+            checkout('STX')
+        )
 
 
 if __name__ == '__main__':
