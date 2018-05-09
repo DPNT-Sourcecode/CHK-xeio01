@@ -85,7 +85,7 @@ def checkout(skus):
 
     # theres no item with both this promo and the ones above, so all good
     amount, remaining_basket = _apply_weird_new_promo(remaining_basket)
-    
+    print amount, remaining_basket
     # theres no item with both this promo and the ones above, so all good
     new_amount, remaining_basket = _apply_single_item_promos(remaining_basket)
     amount += new_amount
@@ -141,12 +141,12 @@ def _apply_weird_new_promo(basket):
     # these will all get applied the same price anyways
     twenties = new_basket['S'] + new_basket['T'] + new_basket['Y']
     new_basket['S'] = twenties
-    del new_basket['T']
-    del new_basket['Y']
+    new_basket['T'] = 0
+    new_basket['Y'] = 0
     
     leftovers = 0
     stop = ''
-    # this is either a really clever migraine epiphany or makes no sense
+    
     for item in ('Z', 'S', 'X'):
         if new_basket[item] + leftovers > 3:
             new_amount, leftovers = _helper_thingie_for_weird_new_promo(
@@ -154,6 +154,7 @@ def _apply_weird_new_promo(basket):
             amount += new_amount
         else:
             stop = item
+    import ipdb; ipdb.set_trace()
 
     if stop == '':
         new_basket['X'] = leftovers   
