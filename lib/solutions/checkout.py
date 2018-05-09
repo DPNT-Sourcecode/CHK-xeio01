@@ -155,10 +155,18 @@ def _apply_weird_new_promo(basket):
     # although it doesn't really matter if they all cost the same, right?
     # right
 
-    for item in leftovers:
-        if leftovers[item] == 0:
-            continue
-        
+    # order matters, want to reduce price as much as possible for the customer
+
+    # does this really have to be the biggest if/else in the history of mankind?
+
+    if leftovers['Z'] == 2:
+        if leftovers['S'] == 1:
+            amount += 45
+        elif leftovers['S'] == 2:
+            amount += 45
+            leftovers['S'] = 1
+            if leftovers['X'] == 2:
+                amount += 45
 
     # then whatever is left with xs
 
