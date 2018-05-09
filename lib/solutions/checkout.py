@@ -1,31 +1,31 @@
 PRICES = {
-        'A': 50,
-        'B': 30,
-        'C': 20,
-        'D': 15,
-        'E': 40,
-        'F': 10,
-        'G': 20,
-        'H': 10,
-        'I': 35,
-        'J': 60,
-        'K': 70,
-        'L': 90,
-        'M': 15,
-        'N': 40,
-        'O': 10,
-        'P': 50,
-        'Q': 30,
-        'R': 50,
-        'S': 20,
-        'T': 20,
-        'U': 40,
-        'V': 50,
-        'W': 20,
-        'X': 17,
-        'Y': 20,
-        'Z': 21,
-    }
+    'A': 50,
+    'B': 30,
+    'C': 20,
+    'D': 15,
+    'E': 40,
+    'F': 10,
+    'G': 20,
+    'H': 10,
+    'I': 35,
+    'J': 60,
+    'K': 70,
+    'L': 90,
+    'M': 15,
+    'N': 40,
+    'O': 10,
+    'P': 50,
+    'Q': 30,
+    'R': 50,
+    'S': 20,
+    'T': 20,
+    'U': 40,
+    'V': 50,
+    'W': 20,
+    'X': 17,
+    'Y': 20,
+    'Z': 21,
+}
 
 # make a frontend interface for the people responsible for pricing pls
 
@@ -69,10 +69,7 @@ PROMOTIONS = {
 # skus = unicode string
 def checkout(skus):
 
-    basket = {}
-
-    for item in PRICES:
-        basket[item] = 0
+    basket = { item: 0 for item in PRICES }
 
     for char in skus:
         if char not in PRICES:
@@ -84,6 +81,10 @@ def checkout(skus):
     # since currently bundles don't change the item price
     remaining_basket = _apply_bundle_promos(basket)
 
+    # theres no item with both this promo and the ones above, so all good
+    amount, remaining_basket = _apply_weird_new_promo(basket)
+
+    # theres no item with both this promo and the ones above, so all good
     amount, remaining_basket = _apply_single_item_promos(basket)
 
     for item in remaining_basket:
