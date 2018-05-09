@@ -140,15 +140,20 @@ def _apply_weird_new_promo(basket):
     amount = 0
 
     new_basket = { item: basket[item] for item in items_this_applies_to_in_order }
+    # these will all get applied the same price anyways
     twenties = new_basket['S'] + new_basket['T'] + new_basket['Y']
     new_basket['S'] = twenties
     del new_basket['T']
     del new_basket['Y']
     
-    leftovers = {}
+    leftovers = 0
     for item in items_this_applies_to_in_order:
         amount, leftovers = _helper_thingie_for_weird_new_promo(
-            new_basket[item], amount)
+            new_basket[item] + leftovers, amount)
+
+    # this is either a really clever migraine epiphany or makes no sense
+
+    new_basket['X'] = leftovers   
 
 def _helper_thingie_for_weird_new_promo(number, amount):
     # make as many bundles as possible
