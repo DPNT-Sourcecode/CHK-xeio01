@@ -143,14 +143,19 @@ def _apply_weird_new_promo(basket):
     leftovers = {}
     for item in new_basket:
         amount, leftovers[item] = _helper_thingie_for_weird_new_promo(
-            new, amount)
+            new_basket[item], amount)
+
+    # have to keep track of which items have been grouped
+    # so we how many will still get the normal price applied
+    # although it doesn't really matter if they all cost the same, right?
+    # right
+
+    twenties = new_basket['S'] + new_basket['T'] + new_basket['Y']
+    new_basket['S'] = twenties
+    new_basket['T'] = 0
+    new_basket['Y'] = 0
 
     
-
-    twenties = twenties + leftover_zs
-    # this looks recursive but i have a migraine and cant think properly right now 😅
-    # then zs with s, t, y
-
     # then whatever is left with xs
 
 def _helper_thingie_for_weird_new_promo(number, amount):
