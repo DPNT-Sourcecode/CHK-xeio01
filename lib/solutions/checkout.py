@@ -85,10 +85,10 @@ def checkout(skus):
 
     # theres no item with both this promo and the ones above, so all good
     amount, remaining_basket = _apply_weird_new_promo(remaining_basket)
-
+    
     # theres no item with both this promo and the ones above, so all good
-    amount, remaining_basket = _apply_single_item_promos(remaining_basket)
-
+    new_amount, remaining_basket = _apply_single_item_promos(remaining_basket)
+    amount += new_amount
     for item in remaining_basket:
         amount += remaining_basket[item]*PRICES[item]
 

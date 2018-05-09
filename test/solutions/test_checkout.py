@@ -68,6 +68,24 @@ class TestCheckout(unittest.TestCase):
             checkout('ABCDD')
         )
 
+    def test_t_returns_correct_amount(self):
+        self.assertEqual(
+            20,
+            checkout('T')
+        )
+    
+    def test_x_returns_correct_amount(self):
+        self.assertEqual(
+            17,
+            checkout('X')
+        )
+
+    def test_y_returns_correct_amount(self):
+        self.assertEqual(
+            20,
+            checkout('Y')
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
