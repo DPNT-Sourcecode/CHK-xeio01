@@ -1,3 +1,5 @@
+import copy
+
 PRICES = {
     'A': 50,
     'B': 30,
@@ -134,6 +136,8 @@ def _apply_weird_new_promo(basket):
     # buy any 3 of (S,T,X,Y,Z) for 45 
     # there will be no new requirements coming in because this is the last part of the test
     
+    amount = 0
+    new_basket = copy.deepcopy(basket)
     ss = basket['S']  # costs 20
     ts = basket['T']  # costs 20
     xs = basket['X']  # costs 17
@@ -144,8 +148,11 @@ def _apply_weird_new_promo(basket):
 
     # make as many z bundles as possible
     leftover_zs = zs % 3 if zs >= 3 else zs
-    if leftover_zs == zs:
-
+    if leftover_zs != zs:
+        amount += (zs-leftover_zs)/3*45
+    
+    twenties = twenties + leftover_zs
+    # this looks recursive but i have a migraine and cant think properly right now 
     # then zs with s, t, y
 
     # then whatever is left with xs
