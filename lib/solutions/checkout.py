@@ -129,3 +129,13 @@ def _apply_single_item_promos(basket):
                     items_left = basket[item] - number_to_apply_promo
                     basket[item] = 0 if items_left < 0 else items_left
     return amount, basket
+
+def _apply_weird_new_promo(basket):
+    # buy any 3 of (S,T,X,Y,Z) for 45 
+    # there will be no new requirements coming in because this is the last part of the test
+    
+    ss = basket['S']
+    ts = basket['T']
+    xs = basket['X']
+    ys = basket['Y']
+    zs = basket
