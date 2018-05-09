@@ -136,21 +136,26 @@ def _apply_weird_new_promo(basket):
     # buy any 3 of (S,T,X,Y,Z) for 45 
     # there will be no new requirements coming in because this is the last part of the test
     
-    items_this_applies_to = ('S', 'T', 'X', 'Y', 'Z')
+    items_this_applies_to_in_order = ('Z', 'S', 'T', 'Y', 'X')
     amount = 0
 
-    new_basket = { item: basket[item] for item in items_this_applies_to }
+    new_basket = { item: basket[item] for item in items_this_applies_to_in_order }
     twenties = new_basket['S'] + new_basket['T'] + new_basket['Y']
     new_basket['S'] = twenties
     del new_basket['T']
     del new_basket['Y']
-
-    # no this is wrong, we want to bundle the zs with s/t/y first...
+    
     leftovers = {}
-    for item in new_basket:
-        amount, leftovers[item] = _helper_thingie_for_weird_new_promo(
+    for item in items_this_applies_to_in_order:
+        amount, leftovers = _helper_thingie_for_weird_new_promo(
             new_basket[item], amount)
 
-   
+def _helper_thingie_for_weird_new_promo(number, amount):
+    # make as many bundles as possible
+    leftover = number % 3 if number >= 3 else number
+    if leftover != number:
+        amount += (number - leftover)/3*45
+
+    return amount, leftover
     
     
