@@ -1,4 +1,4 @@
-import copy
+# -*- coding: utf-8 -*-
 
 PRICES = {
     'A': 50,
@@ -134,46 +134,8 @@ def _apply_weird_new_promo(basket):
     # buy any 3 of (S,T,X,Y,Z) for 45 
     # there will be no new requirements coming in because this is the last part of the test
     
-    items_this_applies_to_in_order = ('Z', 'S', 'T', 'Y', 'X')
-    amount = 0
-
-    new_basket = { item: basket[item] for item in items_this_applies_to_in_order }
-    # these will all get applied the same price anyways
-    twenties = new_basket['S'] + new_basket['T'] + new_basket['Y']
-    new_basket['S'] = twenties
-    new_basket['T'] = 0
-    new_basket['Y'] = 0
-
-    leftovers = new_basket['Z'] % 3
-    if leftovers == new_basket['Z']:
-        pass
-    
-    leftovers = 0
-    stop = ''
-    for item in ('Z', 'S', 'X'):
-        totes = new_basket['Z'] + new_basket['S'] + new_basket['X']
-        if totes > 3:
-            new_amount, new_leftovers = _helper_thingie_for_weird_new_promo(
-                new_basket[item] + leftovers, amount)
-            amount += new_amount
-            new_basket[item] = leftovers if new_basket[item] % 3 == 0 else new_basket[item]
-        else:
-            stop = item
-            break
-
-    if stop == '':
-        new_basket['X'] = leftovers   
-    else:
-        new_basket[stop] = leftovers
-
-    basket.update(**new_basket)
-    return amount, basket
-
-def _helper_thingie_for_weird_new_promo(number, amount):
-    leftover = number % 3 if number >= 3 else number
-    if leftover != number:
-        amount += (number - leftover)/3*45
-
-    return amount, leftover
-    
+    # soooo
+    # Zs are more expensive and we like our customers so group them first
+    # S, ... oh wait 🤷‍♀️
+    pass
     
