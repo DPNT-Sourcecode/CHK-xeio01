@@ -85,7 +85,7 @@ def checkout(skus):
 
     # theres no item with both this promo and the ones above, so all good
     amount, remaining_basket = _apply_weird_new_promo(remaining_basket)
-    print amount, remaining_basket
+
     # theres no item with both this promo and the ones above, so all good
     new_amount, remaining_basket = _apply_single_item_promos(remaining_basket)
     amount += new_amount
@@ -144,7 +144,7 @@ def _apply_weird_new_promo(basket):
     # lol
     # I'm dumb - on a migraine, this is embarassing 🙈
 
-    valid_items_for_this_promo = ('S, ')
+    valid_items_for_this_promo = ('S', 'T', 'X', 'Y', 'Z')
 
     ordered_items = '{}{}{}{}{}'.format(
         'Z'*basket['Z'],
@@ -154,7 +154,16 @@ def _apply_weird_new_promo(basket):
         'X'*basket['X'],
     )
 
-    if ordered_items % 3 == 0
-        basket
+    for item in valid_items_for_this_promo:
+        basket[item] = 0
 
-    pass
+    amount = 45*(len(ordered_items)/3)
+
+    if ordered_items % 3 == 0
+        return amount, basket
+    else:
+        last = ordered_items[-1]
+        if ordered_items % 3 == 1:
+            basket[last] += 1
+            
+
