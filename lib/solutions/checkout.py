@@ -82,7 +82,6 @@ def checkout(skus):
     # this removes items that will be free from the basket,
     # since currently bundles don't change the item price
     remaining_basket = _apply_bundle_promos(basket)
-    print remaining_basket
 
     # theres no item with both this promo and the ones above, so all good
     amount, remaining_basket = _apply_weird_new_promo(remaining_basket)
@@ -150,19 +149,15 @@ def _apply_weird_new_promo(basket):
     ordered_items = ''
 
     for item in valid_items_for_this_promo:
-        print item, basket[item]
         ordered_items += str(basket[item]*item)
         basket[item] = 0
 
-    import ipdb; ipdb.set_trace()
     amount = 45*(len(ordered_items)/3)
 
     if len(ordered_items) % 3 != 0:
-        ipdb.set_trace()
         last = ordered_items[-1]
         basket[last] = 1
         if len(ordered_items) % 3 == 2:
             second_last = ordered_items[-2]
             basket[second_last] += 1
-    ipdb.set_trace()
     return amount, basket
