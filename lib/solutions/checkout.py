@@ -144,22 +144,21 @@ def _apply_weird_new_promo(basket):
     # lol
     # I'm dumb - on a migraine, this is embarassing 🙈
 
-    valid_items_for_this_promo = ('S', 'T', 'X', 'Y', 'Z')
+    valid_items_for_this_promo = ('Z', 'T', 'X', 'Y', 'X')
 
-    ordered_items = '{}{}{}{}{}'.format(
-        'Z'*basket['Z'],
-        'S'*basket['S'],
-        'T'*basket['T'],
-        'Y'*basket['Y'],
-        'X'*basket['X'],
-    )
+    ordered_items = ''
+
+    for item in valid_items_for_this_promo:
+        print item, basket[item]
+        ordered_items += str(basket[item]*item)
+        basket[item] = 0
 
     amount = 45*(len(ordered_items)/3)
 
-    if ordered_items % 3 == 0
-        
-        return amount, basket
-    else:
+    if len(ordered_items) % 3 != 0:
         last = ordered_items[-1]
-        if ordered_items % 3 == 1:
-
+        basket[last] = 1
+        if len(ordered_items) % 3 == 2:
+            second_last = ordered_items[-2]
+            basket[second_last] += 1
+    return amount, basket
