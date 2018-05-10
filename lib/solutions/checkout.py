@@ -154,16 +154,12 @@ def _apply_weird_new_promo(basket):
         'X'*basket['X'],
     )
 
-    for item in valid_items_for_this_promo:
-        basket[item] = 0
-
     amount = 45*(len(ordered_items)/3)
 
     if ordered_items % 3 == 0
+        
         return amount, basket
     else:
         last = ordered_items[-1]
         if ordered_items % 3 == 1:
-            basket[last] += 1
-            
 
