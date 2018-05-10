@@ -136,6 +136,8 @@ def _apply_weird_new_promo(basket):
     
     # soooo
     # Zs are more expensive and we like our customers so group them first
-    # S, ... oh wait 🤷‍♀️
+    # S, T and Y are all the same price
+    # then Xs
+    # 
+    # ZSYXXXZZ
     pass
-    
