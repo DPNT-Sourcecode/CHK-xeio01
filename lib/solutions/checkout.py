@@ -140,4 +140,21 @@ def _apply_weird_new_promo(basket):
     # then Xs
     # 
     # ZSYXXXZZ
+    # ZZZ SYX XX
+    # lol
+    # I'm dumb - on a migraine, this is embarassing 🙈
+
+    valid_items_for_this_promo = ('S, ')
+
+    ordered_items = '{}{}{}{}{}'.format(
+        'Z'*basket['Z'],
+        'S'*basket['S'],
+        'T'*basket['T'],
+        'Y'*basket['Y'],
+        'X'*basket['X'],
+    )
+
+    if ordered_items % 3 == 0
+        basket
+
     pass
